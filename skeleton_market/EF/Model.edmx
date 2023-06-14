@@ -1,0 +1,1403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище skeletonmarketModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="idAddress" />
+          </Key>
+          <Property Name="idAddress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCity" Type="int" Nullable="false" />
+          <Property Name="MailIndex" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bag">
+          <Key>
+            <PropertyRef Name="idBag" />
+          </Key>
+          <Property Name="idBag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMerchSize" Type="int" Nullable="false" />
+          <Property Name="idCheckout" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="TotalSum" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="idBrand" />
+          </Key>
+          <Property Name="idBrand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Checkout">
+          <Key>
+            <PropertyRef Name="idCheckout" />
+          </Key>
+          <Property Name="idCheckout" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="idPickUpPoint" Type="int" Nullable="false" />
+          <Property Name="TotalSum" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="idCity" />
+          </Key>
+          <Property Name="idCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="BirthDay" Type="date" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientAddress">
+          <Key>
+            <PropertyRef Name="idClientAddress" />
+          </Key>
+          <Property Name="idClientAddress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="idAddress" Type="int" Nullable="false" />
+          <Property Name="DateChange" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="idEmployee" />
+          </Key>
+          <Property Name="idEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nchar" MaxLength="14" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Merchandise">
+          <Key>
+            <PropertyRef Name="idMerchandise" />
+          </Key>
+          <Property Name="idMerchandise" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="idBrand" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1500" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="idCategory" Type="int" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="ReleaseDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MerchPhoto">
+          <Key>
+            <PropertyRef Name="idMerchPhoto" />
+          </Key>
+          <Property Name="idMerchPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" Nullable="false" />
+          <Property Name="idMerchandise" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MerchSize">
+          <Key>
+            <PropertyRef Name="idMerchSize" />
+          </Key>
+          <Property Name="idMerchSize" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMerchandise" Type="int" Nullable="false" />
+          <Property Name="idSizeGrid" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="idOrderStatus" />
+          </Key>
+          <Property Name="idOrderStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmployee" Type="int" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="idStatus" Type="int" Nullable="false" />
+          <Property Name="idCheckout" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PickUpPoint">
+          <Key>
+            <PropertyRef Name="idPickUpPoint" />
+          </Key>
+          <Property Name="idPickUpPoint" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="14" Nullable="false" />
+          <Property Name="idCity" Type="int" />
+        </EntityType>
+        <EntityType Name="SizeGrid">
+          <Key>
+            <PropertyRef Name="idSizeGrid" />
+          </Key>
+          <Property Name="idSizeGrid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="idStatus" />
+          </Key>
+          <Property Name="idStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="idWishlist" />
+          </Key>
+          <Property Name="idWishlist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="idMerchandise" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Address_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bag_Checkout">
+          <End Role="Checkout" Type="Self.Checkout" Multiplicity="1" />
+          <End Role="Bag" Type="Self.Bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkout">
+              <PropertyRef Name="idCheckout" />
+            </Principal>
+            <Dependent Role="Bag">
+              <PropertyRef Name="idCheckout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bag_MerchSize">
+          <End Role="MerchSize" Type="Self.MerchSize" Multiplicity="1" />
+          <End Role="Bag" Type="Self.Bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchSize">
+              <PropertyRef Name="idMerchSize" />
+            </Principal>
+            <Dependent Role="Bag">
+              <PropertyRef Name="idMerchSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkout_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Checkout" Type="Self.Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Checkout">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkout_PickUpPoint">
+          <End Role="PickUpPoint" Type="Self.PickUpPoint" Multiplicity="1" />
+          <End Role="Checkout" Type="Self.Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PickUpPoint">
+              <PropertyRef Name="idPickUpPoint" />
+            </Principal>
+            <Dependent Role="Checkout">
+              <PropertyRef Name="idPickUpPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAddress_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="ClientAddress" Type="Self.ClientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="idAddress" />
+            </Principal>
+            <Dependent Role="ClientAddress">
+              <PropertyRef Name="idAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAddress_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ClientAddress" Type="Self.ClientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="ClientAddress">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="idBrand" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchPhoto_Merchandise">
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="1" />
+          <End Role="MerchPhoto" Type="Self.MerchPhoto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="MerchPhoto">
+              <PropertyRef Name="idMerchPhoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchSize_Merchandise">
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="1" />
+          <End Role="MerchSize" Type="Self.MerchSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="MerchSize">
+              <PropertyRef Name="idMerchandise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchSize_SizeGrid">
+          <End Role="SizeGrid" Type="Self.SizeGrid" Multiplicity="1" />
+          <End Role="MerchSize" Type="Self.MerchSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeGrid">
+              <PropertyRef Name="idSizeGrid" />
+            </Principal>
+            <Dependent Role="MerchSize">
+              <PropertyRef Name="idSizeGrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Checkout">
+          <End Role="Checkout" Type="Self.Checkout" Multiplicity="1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkout">
+              <PropertyRef Name="idCheckout" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idCheckout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="idStatus" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PickUpPoint_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="PickUpPoint" Type="Self.PickUpPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="PickUpPoint">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="idEmployee" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Merchandise">
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="idMerchandise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище skeletonmarketModelContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bag" EntityType="Self.Bag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Checkout" EntityType="Self.Checkout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientAddress" EntityType="Self.ClientAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merchandise" EntityType="Self.Merchandise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchPhoto" EntityType="Self.MerchPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchSize" EntityType="Self.MerchSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PickUpPoint" EntityType="Self.PickUpPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeGrid" EntityType="Self.SizeGrid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_City" Association="Self.FK_Address_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bag_Checkout" Association="Self.FK_Bag_Checkout">
+            <End Role="Checkout" EntitySet="Checkout" />
+            <End Role="Bag" EntitySet="Bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bag_MerchSize" Association="Self.FK_Bag_MerchSize">
+            <End Role="MerchSize" EntitySet="MerchSize" />
+            <End Role="Bag" EntitySet="Bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkout_Client" Association="Self.FK_Checkout_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Checkout" EntitySet="Checkout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkout_PickUpPoint" Association="Self.FK_Checkout_PickUpPoint">
+            <End Role="PickUpPoint" EntitySet="PickUpPoint" />
+            <End Role="Checkout" EntitySet="Checkout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAddress_Address" Association="Self.FK_ClientAddress_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="ClientAddress" EntitySet="ClientAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAddress_Client" Association="Self.FK_ClientAddress_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientAddress" EntitySet="ClientAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Brand" Association="Self.FK_Merchandise_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Category" Association="Self.FK_Merchandise_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Gender" Association="Self.FK_Merchandise_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchPhoto_Merchandise" Association="Self.FK_MerchPhoto_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="MerchPhoto" EntitySet="MerchPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchSize_Merchandise" Association="Self.FK_MerchSize_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="MerchSize" EntitySet="MerchSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchSize_SizeGrid" Association="Self.FK_MerchSize_SizeGrid">
+            <End Role="SizeGrid" EntitySet="SizeGrid" />
+            <End Role="MerchSize" EntitySet="MerchSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Checkout" Association="Self.FK_OrderStatus_Checkout">
+            <End Role="Checkout" EntitySet="Checkout" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Status" Association="Self.FK_OrderStatus_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PickUpPoint_City" Association="Self.FK_PickUpPoint_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="PickUpPoint" EntitySet="PickUpPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Employee" Association="Self.FK_Status_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Client" Association="Self.FK_Wishlist_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Merchandise" Association="Self.FK_Wishlist_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="skeletonmarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(skeletonmarketModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(skeletonmarketModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Address" EntityType="skeletonmarketModel.Address" />
+          <EntitySet Name="Bag" EntityType="skeletonmarketModel.Bag" />
+          <EntitySet Name="Brand" EntityType="skeletonmarketModel.Brand" />
+          <EntitySet Name="Category" EntityType="skeletonmarketModel.Category" />
+          <EntitySet Name="Checkout" EntityType="skeletonmarketModel.Checkout" />
+          <EntitySet Name="City" EntityType="skeletonmarketModel.City" />
+          <EntitySet Name="Client" EntityType="skeletonmarketModel.Client" />
+          <EntitySet Name="ClientAddress" EntityType="skeletonmarketModel.ClientAddress" />
+          <EntitySet Name="Employee" EntityType="skeletonmarketModel.Employee" />
+          <EntitySet Name="Gender" EntityType="skeletonmarketModel.Gender" />
+          <EntitySet Name="Merchandise" EntityType="skeletonmarketModel.Merchandise" />
+          <EntitySet Name="MerchPhoto" EntityType="skeletonmarketModel.MerchPhoto" />
+          <EntitySet Name="MerchSize" EntityType="skeletonmarketModel.MerchSize" />
+          <EntitySet Name="OrderStatus" EntityType="skeletonmarketModel.OrderStatus" />
+          <EntitySet Name="PickUpPoint" EntityType="skeletonmarketModel.PickUpPoint" />
+          <EntitySet Name="SizeGrid" EntityType="skeletonmarketModel.SizeGrid" />
+          <EntitySet Name="Status" EntityType="skeletonmarketModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="skeletonmarketModel.sysdiagrams" />
+          <EntitySet Name="Wishlist" EntityType="skeletonmarketModel.Wishlist" />
+          <AssociationSet Name="FK_Address_City" Association="skeletonmarketModel.FK_Address_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAddress_Address" Association="skeletonmarketModel.FK_ClientAddress_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="ClientAddress" EntitySet="ClientAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bag_Checkout" Association="skeletonmarketModel.FK_Bag_Checkout">
+            <End Role="Checkout" EntitySet="Checkout" />
+            <End Role="Bag" EntitySet="Bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bag_MerchSize" Association="skeletonmarketModel.FK_Bag_MerchSize">
+            <End Role="MerchSize" EntitySet="MerchSize" />
+            <End Role="Bag" EntitySet="Bag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Brand" Association="skeletonmarketModel.FK_Merchandise_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Category" Association="skeletonmarketModel.FK_Merchandise_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkout_Client" Association="skeletonmarketModel.FK_Checkout_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Checkout" EntitySet="Checkout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkout_PickUpPoint" Association="skeletonmarketModel.FK_Checkout_PickUpPoint">
+            <End Role="PickUpPoint" EntitySet="PickUpPoint" />
+            <End Role="Checkout" EntitySet="Checkout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Checkout" Association="skeletonmarketModel.FK_OrderStatus_Checkout">
+            <End Role="Checkout" EntitySet="Checkout" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PickUpPoint_City" Association="skeletonmarketModel.FK_PickUpPoint_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="PickUpPoint" EntitySet="PickUpPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="skeletonmarketModel.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAddress_Client" Association="skeletonmarketModel.FK_ClientAddress_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientAddress" EntitySet="ClientAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Client" Association="skeletonmarketModel.FK_Wishlist_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Employee" Association="skeletonmarketModel.FK_Status_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Merchandise_Gender" Association="skeletonmarketModel.FK_Merchandise_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Merchandise" EntitySet="Merchandise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchPhoto_Merchandise" Association="skeletonmarketModel.FK_MerchPhoto_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="MerchPhoto" EntitySet="MerchPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchSize_Merchandise" Association="skeletonmarketModel.FK_MerchSize_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="MerchSize" EntitySet="MerchSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Merchandise" Association="skeletonmarketModel.FK_Wishlist_Merchandise">
+            <End Role="Merchandise" EntitySet="Merchandise" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchSize_SizeGrid" Association="skeletonmarketModel.FK_MerchSize_SizeGrid">
+            <End Role="SizeGrid" EntitySet="SizeGrid" />
+            <End Role="MerchSize" EntitySet="MerchSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Status" Association="skeletonmarketModel.FK_OrderStatus_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="idAddress" />
+          </Key>
+          <Property Name="idAddress" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="MailIndex" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="skeletonmarketModel.FK_Address_City" FromRole="Address" ToRole="City" />
+          <NavigationProperty Name="ClientAddress" Relationship="skeletonmarketModel.FK_ClientAddress_Address" FromRole="Address" ToRole="ClientAddress" />
+        </EntityType>
+        <EntityType Name="Bag">
+          <Key>
+            <PropertyRef Name="idBag" />
+          </Key>
+          <Property Name="idBag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMerchSize" Type="Int32" Nullable="false" />
+          <Property Name="idCheckout" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="TotalSum" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Checkout" Relationship="skeletonmarketModel.FK_Bag_Checkout" FromRole="Bag" ToRole="Checkout" />
+          <NavigationProperty Name="MerchSize" Relationship="skeletonmarketModel.FK_Bag_MerchSize" FromRole="Bag" ToRole="MerchSize" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="idBrand" />
+          </Key>
+          <Property Name="idBrand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_Merchandise_Brand" FromRole="Brand" ToRole="Merchandise" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_Merchandise_Category" FromRole="Category" ToRole="Merchandise" />
+        </EntityType>
+        <EntityType Name="Checkout">
+          <Key>
+            <PropertyRef Name="idCheckout" />
+          </Key>
+          <Property Name="idCheckout" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idPickUpPoint" Type="Int32" Nullable="false" />
+          <Property Name="TotalSum" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Bag" Relationship="skeletonmarketModel.FK_Bag_Checkout" FromRole="Checkout" ToRole="Bag" />
+          <NavigationProperty Name="Client" Relationship="skeletonmarketModel.FK_Checkout_Client" FromRole="Checkout" ToRole="Client" />
+          <NavigationProperty Name="PickUpPoint" Relationship="skeletonmarketModel.FK_Checkout_PickUpPoint" FromRole="Checkout" ToRole="PickUpPoint" />
+          <NavigationProperty Name="OrderStatus" Relationship="skeletonmarketModel.FK_OrderStatus_Checkout" FromRole="Checkout" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="idCity" />
+          </Key>
+          <Property Name="idCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Address" Relationship="skeletonmarketModel.FK_Address_City" FromRole="City" ToRole="Address" />
+          <NavigationProperty Name="PickUpPoint" Relationship="skeletonmarketModel.FK_PickUpPoint_City" FromRole="City" ToRole="PickUpPoint" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Checkout" Relationship="skeletonmarketModel.FK_Checkout_Client" FromRole="Client" ToRole="Checkout" />
+          <NavigationProperty Name="Gender" Relationship="skeletonmarketModel.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
+          <NavigationProperty Name="ClientAddress" Relationship="skeletonmarketModel.FK_ClientAddress_Client" FromRole="Client" ToRole="ClientAddress" />
+          <NavigationProperty Name="Wishlist" Relationship="skeletonmarketModel.FK_Wishlist_Client" FromRole="Client" ToRole="Wishlist" />
+        </EntityType>
+        <EntityType Name="ClientAddress">
+          <Key>
+            <PropertyRef Name="idClientAddress" />
+          </Key>
+          <Property Name="idClientAddress" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="idAddress" Type="Int32" Nullable="false" />
+          <Property Name="DateChange" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Address" Relationship="skeletonmarketModel.FK_ClientAddress_Address" FromRole="ClientAddress" ToRole="Address" />
+          <NavigationProperty Name="Client" Relationship="skeletonmarketModel.FK_ClientAddress_Client" FromRole="ClientAddress" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="idEmployee" />
+          </Key>
+          <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderStatus" Relationship="skeletonmarketModel.FK_Status_Employee" FromRole="Employee" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="skeletonmarketModel.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_Merchandise_Gender" FromRole="Gender" ToRole="Merchandise" />
+        </EntityType>
+        <EntityType Name="Merchandise">
+          <Key>
+            <PropertyRef Name="idMerchandise" />
+          </Key>
+          <Property Name="idMerchandise" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idBrand" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idCategory" Type="Int32" Nullable="false" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Brand" Relationship="skeletonmarketModel.FK_Merchandise_Brand" FromRole="Merchandise" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="skeletonmarketModel.FK_Merchandise_Category" FromRole="Merchandise" ToRole="Category" />
+          <NavigationProperty Name="Gender" Relationship="skeletonmarketModel.FK_Merchandise_Gender" FromRole="Merchandise" ToRole="Gender" />
+          <NavigationProperty Name="MerchPhoto" Relationship="skeletonmarketModel.FK_MerchPhoto_Merchandise" FromRole="Merchandise" ToRole="MerchPhoto" />
+          <NavigationProperty Name="MerchSize" Relationship="skeletonmarketModel.FK_MerchSize_Merchandise" FromRole="Merchandise" ToRole="MerchSize" />
+          <NavigationProperty Name="Wishlist" Relationship="skeletonmarketModel.FK_Wishlist_Merchandise" FromRole="Merchandise" ToRole="Wishlist" />
+        </EntityType>
+        <EntityType Name="MerchPhoto">
+          <Key>
+            <PropertyRef Name="idMerchPhoto" />
+          </Key>
+          <Property Name="idMerchPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="idMerchandise" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_MerchPhoto_Merchandise" FromRole="MerchPhoto" ToRole="Merchandise" />
+        </EntityType>
+        <EntityType Name="MerchSize">
+          <Key>
+            <PropertyRef Name="idMerchSize" />
+          </Key>
+          <Property Name="idMerchSize" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMerchandise" Type="Int32" Nullable="false" />
+          <Property Name="idSizeGrid" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bag" Relationship="skeletonmarketModel.FK_Bag_MerchSize" FromRole="MerchSize" ToRole="Bag" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_MerchSize_Merchandise" FromRole="MerchSize" ToRole="Merchandise" />
+          <NavigationProperty Name="SizeGrid" Relationship="skeletonmarketModel.FK_MerchSize_SizeGrid" FromRole="MerchSize" ToRole="SizeGrid" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="idOrderStatus" />
+          </Key>
+          <Property Name="idOrderStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmployee" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idStatus" Type="Int32" Nullable="false" />
+          <Property Name="idCheckout" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Checkout" Relationship="skeletonmarketModel.FK_OrderStatus_Checkout" FromRole="OrderStatus" ToRole="Checkout" />
+          <NavigationProperty Name="Employee" Relationship="skeletonmarketModel.FK_Status_Employee" FromRole="OrderStatus" ToRole="Employee" />
+          <NavigationProperty Name="Status" Relationship="skeletonmarketModel.FK_OrderStatus_Status" FromRole="OrderStatus" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="PickUpPoint">
+          <Key>
+            <PropertyRef Name="idPickUpPoint" />
+          </Key>
+          <Property Name="idPickUpPoint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="true" />
+          <Property Name="idCity" Type="Int32" />
+          <NavigationProperty Name="Checkout" Relationship="skeletonmarketModel.FK_Checkout_PickUpPoint" FromRole="PickUpPoint" ToRole="Checkout" />
+          <NavigationProperty Name="City" Relationship="skeletonmarketModel.FK_PickUpPoint_City" FromRole="PickUpPoint" ToRole="City" />
+        </EntityType>
+        <EntityType Name="SizeGrid">
+          <Key>
+            <PropertyRef Name="idSizeGrid" />
+          </Key>
+          <Property Name="idSizeGrid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MerchSize" Relationship="skeletonmarketModel.FK_MerchSize_SizeGrid" FromRole="SizeGrid" ToRole="MerchSize" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="idStatus" />
+          </Key>
+          <Property Name="idStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderStatus" Relationship="skeletonmarketModel.FK_OrderStatus_Status" FromRole="Status" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="idWishlist" />
+          </Key>
+          <Property Name="idWishlist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="idMerchandise" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="skeletonmarketModel.FK_Wishlist_Client" FromRole="Wishlist" ToRole="Client" />
+          <NavigationProperty Name="Merchandise" Relationship="skeletonmarketModel.FK_Wishlist_Merchandise" FromRole="Wishlist" ToRole="Merchandise" />
+        </EntityType>
+        <Association Name="FK_Address_City">
+          <End Type="skeletonmarketModel.City" Role="City" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAddress_Address">
+          <End Type="skeletonmarketModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="skeletonmarketModel.ClientAddress" Role="ClientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="idAddress" />
+            </Principal>
+            <Dependent Role="ClientAddress">
+              <PropertyRef Name="idAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bag_Checkout">
+          <End Type="skeletonmarketModel.Checkout" Role="Checkout" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Bag" Role="Bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkout">
+              <PropertyRef Name="idCheckout" />
+            </Principal>
+            <Dependent Role="Bag">
+              <PropertyRef Name="idCheckout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bag_MerchSize">
+          <End Type="skeletonmarketModel.MerchSize" Role="MerchSize" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Bag" Role="Bag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchSize">
+              <PropertyRef Name="idMerchSize" />
+            </Principal>
+            <Dependent Role="Bag">
+              <PropertyRef Name="idMerchSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Brand">
+          <End Type="skeletonmarketModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="idBrand" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Category">
+          <End Type="skeletonmarketModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkout_Client">
+          <End Type="skeletonmarketModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Checkout" Role="Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Checkout">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkout_PickUpPoint">
+          <End Type="skeletonmarketModel.PickUpPoint" Role="PickUpPoint" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Checkout" Role="Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PickUpPoint">
+              <PropertyRef Name="idPickUpPoint" />
+            </Principal>
+            <Dependent Role="Checkout">
+              <PropertyRef Name="idPickUpPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Checkout">
+          <End Type="skeletonmarketModel.Checkout" Role="Checkout" Multiplicity="1" />
+          <End Type="skeletonmarketModel.OrderStatus" Role="OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkout">
+              <PropertyRef Name="idCheckout" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idCheckout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PickUpPoint_City">
+          <End Type="skeletonmarketModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="skeletonmarketModel.PickUpPoint" Role="PickUpPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="idCity" />
+            </Principal>
+            <Dependent Role="PickUpPoint">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Type="skeletonmarketModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAddress_Client">
+          <End Type="skeletonmarketModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="skeletonmarketModel.ClientAddress" Role="ClientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="ClientAddress">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Client">
+          <End Type="skeletonmarketModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Employee">
+          <End Type="skeletonmarketModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="skeletonmarketModel.OrderStatus" Role="OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="idEmployee" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Merchandise_Gender">
+          <End Type="skeletonmarketModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Merchandise">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchPhoto_Merchandise">
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="1" />
+          <End Type="skeletonmarketModel.MerchPhoto" Role="MerchPhoto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="MerchPhoto">
+              <PropertyRef Name="idMerchPhoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchSize_Merchandise">
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="1" />
+          <End Type="skeletonmarketModel.MerchSize" Role="MerchSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="MerchSize">
+              <PropertyRef Name="idMerchandise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Merchandise">
+          <End Type="skeletonmarketModel.Merchandise" Role="Merchandise" Multiplicity="1" />
+          <End Type="skeletonmarketModel.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="idMerchandise" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="idMerchandise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchSize_SizeGrid">
+          <End Type="skeletonmarketModel.SizeGrid" Role="SizeGrid" Multiplicity="1" />
+          <End Type="skeletonmarketModel.MerchSize" Role="MerchSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeGrid">
+              <PropertyRef Name="idSizeGrid" />
+            </Principal>
+            <Dependent Role="MerchSize">
+              <PropertyRef Name="idSizeGrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Status">
+          <End Type="skeletonmarketModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="skeletonmarketModel.OrderStatus" Role="OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="idStatus" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="idStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище skeletonmarketModelContainer" CdmEntityContainer="Entities">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище skeletonmarketModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище skeletonmarketModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище skeletonmarketModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище skeletonmarketModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="skeletonmarketModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище skeletonmarketModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="skeletonmarketModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище skeletonmarketModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище skeletonmarketModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="MailIndex" ColumnName="MailIndex" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="idAddress" ColumnName="idAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bag">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Bag">
+              <MappingFragment StoreEntitySet="Bag">
+                <ScalarProperty Name="TotalSum" ColumnName="TotalSum" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="idCheckout" ColumnName="idCheckout" />
+                <ScalarProperty Name="idMerchSize" ColumnName="idMerchSize" />
+                <ScalarProperty Name="idBag" ColumnName="idBag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idBrand" ColumnName="idBrand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checkout">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Checkout">
+              <MappingFragment StoreEntitySet="Checkout">
+                <ScalarProperty Name="TotalSum" ColumnName="TotalSum" />
+                <ScalarProperty Name="idPickUpPoint" ColumnName="idPickUpPoint" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idCheckout" ColumnName="idCheckout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="skeletonmarketModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientAddress">
+            <EntityTypeMapping TypeName="skeletonmarketModel.ClientAddress">
+              <MappingFragment StoreEntitySet="ClientAddress">
+                <ScalarProperty Name="DateChange" ColumnName="DateChange" />
+                <ScalarProperty Name="idAddress" ColumnName="idAddress" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idClientAddress" ColumnName="idClientAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merchandise">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Merchandise">
+              <MappingFragment StoreEntitySet="Merchandise">
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="idBrand" ColumnName="idBrand" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idMerchandise" ColumnName="idMerchandise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchPhoto">
+            <EntityTypeMapping TypeName="skeletonmarketModel.MerchPhoto">
+              <MappingFragment StoreEntitySet="MerchPhoto">
+                <ScalarProperty Name="idMerchandise" ColumnName="idMerchandise" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="idMerchPhoto" ColumnName="idMerchPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchSize">
+            <EntityTypeMapping TypeName="skeletonmarketModel.MerchSize">
+              <MappingFragment StoreEntitySet="MerchSize">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="idSizeGrid" ColumnName="idSizeGrid" />
+                <ScalarProperty Name="idMerchandise" ColumnName="idMerchandise" />
+                <ScalarProperty Name="idMerchSize" ColumnName="idMerchSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="skeletonmarketModel.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="idCheckout" ColumnName="idCheckout" />
+                <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+                <ScalarProperty Name="idOrderStatus" ColumnName="idOrderStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PickUpPoint">
+            <EntityTypeMapping TypeName="skeletonmarketModel.PickUpPoint">
+              <MappingFragment StoreEntitySet="PickUpPoint">
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="idPickUpPoint" ColumnName="idPickUpPoint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeGrid">
+            <EntityTypeMapping TypeName="skeletonmarketModel.SizeGrid">
+              <MappingFragment StoreEntitySet="SizeGrid">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="idSizeGrid" ColumnName="idSizeGrid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="skeletonmarketModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wishlist">
+            <EntityTypeMapping TypeName="skeletonmarketModel.Wishlist">
+              <MappingFragment StoreEntitySet="Wishlist">
+                <ScalarProperty Name="idMerchandise" ColumnName="idMerchandise" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idWishlist" ColumnName="idWishlist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

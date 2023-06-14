@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f329ffe60d234897b91cb2e4bee5bc8e" Name="Diagram1">
+        <EntityTypeShape EntityType="skeletonmarketModel.Address" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Bag" Width="1.5" PointX="13.5" PointY="9" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Brand" Width="1.5" PointX="3.75" PointY="15.5" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Category" Width="1.5" PointX="3.75" PointY="13.125" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Checkout" Width="1.5" PointX="8.25" PointY="8.75" />
+        <EntityTypeShape EntityType="skeletonmarketModel.City" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Client" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="skeletonmarketModel.ClientAddress" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Employee" Width="1.5" PointX="8.25" PointY="2" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Gender" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Merchandise" Width="1.5" PointX="6" PointY="12.25" />
+        <EntityTypeShape EntityType="skeletonmarketModel.MerchPhoto" Width="1.5" PointX="8.25" PointY="16.375" />
+        <EntityTypeShape EntityType="skeletonmarketModel.MerchSize" Width="1.5" PointX="8.25" PointY="13" />
+        <EntityTypeShape EntityType="skeletonmarketModel.OrderStatus" Width="1.5" PointX="10.5" PointY="8.875" />
+        <EntityTypeShape EntityType="skeletonmarketModel.PickUpPoint" Width="1.5" PointX="6" PointY="3.125" />
+        <EntityTypeShape EntityType="skeletonmarketModel.SizeGrid" Width="1.5" PointX="6" PointY="16.875" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Status" Width="1.5" PointX="8.25" PointY="5.625" />
+        <EntityTypeShape EntityType="skeletonmarketModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="skeletonmarketModel.Wishlist" Width="1.5" PointX="5.25" PointY="9.125" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Address_City" />
+        <AssociationConnector Association="skeletonmarketModel.FK_ClientAddress_Address" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Bag_Checkout" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Bag_MerchSize" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Merchandise_Brand" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Merchandise_Category" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Checkout_Client" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Checkout_PickUpPoint" />
+        <AssociationConnector Association="skeletonmarketModel.FK_OrderStatus_Checkout" />
+        <AssociationConnector Association="skeletonmarketModel.FK_PickUpPoint_City" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Client_Gender" />
+        <AssociationConnector Association="skeletonmarketModel.FK_ClientAddress_Client" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Wishlist_Client" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Status_Employee" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Merchandise_Gender" />
+        <AssociationConnector Association="skeletonmarketModel.FK_MerchPhoto_Merchandise" />
+        <AssociationConnector Association="skeletonmarketModel.FK_MerchSize_Merchandise" />
+        <AssociationConnector Association="skeletonmarketModel.FK_Wishlist_Merchandise" />
+        <AssociationConnector Association="skeletonmarketModel.FK_MerchSize_SizeGrid" />
+        <AssociationConnector Association="skeletonmarketModel.FK_OrderStatus_Status" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

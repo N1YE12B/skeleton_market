@@ -1,0 +1,131 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:skeleton_market.Windows"
+        xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="skeleton_market.Windows.merch_template"
+        mc:Ignorable="d"
+        Title="merch_template" Height="450" Width="800">
+    <Grid>
+
+
+        <Border 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="210"
+            Height="340"
+            BorderBrush="Black"
+           
+            >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="53*"/>
+                    <RowDefinition Height ="53*"/>
+                    <RowDefinition Height ="53*"/>
+                    <RowDefinition Height ="53*"/>
+                    <RowDefinition Height ="42*"/>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height ="53*"/>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="temp_image" 
+                   Grid.Row="0"
+                   Grid.RowSpan="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
+                   Height="255" Source="/203192367-1-greyandblack.png"
+                   Stretch="Fill" Width="210"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   />
+
+                <TextBlock
+                x:Name="temp_merchname"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"                
+                Text="Versace Jeans Couture оверсайз толстовка с логотипом космического кристалла черного цвета"
+                Grid.Row="5"
+                Grid.RowSpan="2"
+                Margin="2 -10 0 0"
+                FontFamily="Century"
+                FontSize="11"
+                Height="40"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                TextWrapping="Wrap"
+                />
+
+                <TextBlock
+                    x:Name="temp_price"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="16000 ₽"
+                    FontFamily="Century"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    FontSize="11"
+                    FontWeight="Bold"
+                    Margin="2 0 0 10"
+                    />
+
+
+
+                <Button
+                    x:Name="btnMoveToProductPage_temp"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Width="210"
+                    Height="340"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Grid.Row="0"
+                    Grid.RowSpan="7"
+                    />
+
+                <Button 
+                    x:Name="btnLike_temp"
+                    Content="♡"
+                    FontSize="20"
+                    Margin="0 0 0 5"
+                    Width="50"
+                    Height="30"
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    hc:FloatingBlock.Duration="0:0:1" 
+                    hc:FloatingBlock.VerticalOffset="-20" 
+                    hc:FloatingBlock.ToX="0" 
+                    hc:FloatingBlock.ToY="-80">
+                    <hc:FloatingBlock.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="♥" FontSize="30"/>
+
+                        </DataTemplate>
+                    </hc:FloatingBlock.ContentTemplate>
+                </Button>
+            </Grid>
+        </Border>
+
+
+
+        
+       
+
+
+
+
+    </Grid>
+</Window>
